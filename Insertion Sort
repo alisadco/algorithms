@@ -1,33 +1,37 @@
-public class InsertionSortExample 
-{
-    public static void main(String[] args) 
-    {
-        //This is unsorted array
-        Integer[] array = new Integer[] {12,13,24,10,3,6,90,70};
-         
-        //Let's sort using insertion sort
-        insertionSort(array, 0, array.length);
-         
-        //Verify sorted array
-        System.out.println(Arrays.toString(array));
-    }
- 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static void insertionSort(Object[] a, int fromIndex, int toIndex) 
-    {
-        Object d;
-        for (int i = fromIndex + 1; i < toIndex; i++) 
-        {
-            d = a[i];
-            int j = i;
-            while (j > fromIndex && ((Comparable) a[j - 1]).compareTo(d) > 0) 
-            {
-                a[j] = a[j - 1];
-                j--;
-            }
-            a[j] = d;
-        }
-    }
+public class Main{
+	
+	// Insertion sort = after comparing elements to the left,
+	//				shift elements to the right to make room to insert a value
+	
+	//				Quadratic time O(n^2)
+	//				small data set = decent
+	//				large data set = BAD
+	
+	//				Less steps than Bubble sort
+	//				Best case is O(n) compared to Selection sort O(n^2)
+	
+	public static void main(String[] args) {
+		
+		int array[] = {9, 1, 8, 2, 7, 3, 6, 5, 4};
+		
+		insertionSort(array);
+		
+		for(int i : array) {
+			System.out.print(i + " ");
+		}
+	}
+
+	private static void insertionSort(int[] array) {
+		
+		for(int i = 1; i < array.length; i++) {
+			int temp = array[i];
+			int j = i - 1;
+			
+			while(j >= 0 && array[j] > temp) {
+				array[j + 1] = array[j];
+				j--;
+			}
+			array[j + 1] = temp;
+		}
+	}
 }
- 
-Output: [3, 6, 10, 12, 13, 24, 70, 90]
